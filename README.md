@@ -13,7 +13,7 @@ Carnegie Mellon University &nbsp;·&nbsp; <sup>λ</sup>Lambda
 
 <!-- BADGES -->
 [![Website](https://img.shields.io/badge/🌎-Website-blue.svg)](http://sim2reason.github.io)
-[![Arxiv](https://img.shields.io/badge/arXiv-Paper-b31b1b.svg)](http://sim2reason.github.io)
+[![Arxiv](https://img.shields.io/badge/arXiv-Paper-b31b1b.svg)](https://arxiv.org/abs/2604.11805)
 
 <!-- Teaser -->
 <video src="https://github.com/user-attachments/assets/250d8b73-9728-46e6-aa4c-3a962a74fbf1
