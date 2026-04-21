@@ -97,7 +97,7 @@ python -m verl_v4.recipe.dapo.main_dapo exps="[dapo_32b,syn_data,q2.5_14b,gspo,u
 
 This command finetunes Qwen2.5 14B Instruct on the generated synthetic data using DAPO algorithm. Training info is logged in wandb by default in the project named `verl`, and checkpoints are saved at `PHO_CHECKPOINT_DIR/<run_name>`. By default, only latest global step checkpoint is saved, deleting the old checkpoints to save storage. 
 
-**Pretrained Checkpints:** We provide our pretrained checkpoints for various Qwen models in [HuggingFace]().
+**Pretrained Checkpints:** We provide our pretrained checkpoints for various Qwen models in [HuggingFace](https://huggingface.co/collections/asatpath/sim2reason).
 
 ## Evaluation
 Evaluation requires first converting the checkpoint to HuggingFace format by running the following command:
@@ -109,7 +109,7 @@ python verl_v4/scripts/model_merger.py merge \
     --target_dir "$TARGET_DIR"
 ```
 
-To evaluate the model's performance on IPhO, download the val set from [HF link]() to `PHO_DATA/ipho/ipho_numeric_validation_no_instruct.parquet` and run:
+To evaluate the model's performance on IPhO, download the val set from [HF link](https://huggingface.co/collections/asatpath/sim2reason) to `PHO_DATA/ipho/ipho_numeric_validation_no_instruct.parquet` and run:
 ```bash
 python -m verl_v4.recipe.dapo.simple_eval \
  exps='[dapo_32b,log_all_reward,pass_at_n,simple_eval]' \
