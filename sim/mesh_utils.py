@@ -167,7 +167,7 @@ def export(mesh, output_path: str):
     bpy.ops.object.select_all(action='DESELECT')
     mesh.select_set(True)
     # bpy.ops.export_mesh.stl(filepath=output_path, check_existing=False, axis_forward='Y', axis_up='Z')
-    bpy.ops.wm.stl_export(filepath=output_path, check_existing=False, axis_forward='Y', axis_up='Z')
+    bpy.ops.wm.stl_export(filepath=output_path, check_existing=False, forward_axis='Y', up_axis='Z')
 
 def test():
 

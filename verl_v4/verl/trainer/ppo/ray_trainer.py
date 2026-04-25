@@ -776,6 +776,10 @@ class RayPPOTrainer:
                 # st()
                 
                 scores_rejection_sampling = reward_dict_per_step['final_reward_function/score']
+                
+                if bs is None:
+                    bs = len(scores_rejection_sampling) // n
+                
                 scores_rejection_sampling_ = np.array(scores_rejection_sampling).reshape(bs, n)
                 scores_rejection_sampling_std = scores_rejection_sampling_.std(axis=1)
                 scores_rejection_sampling_std_location = np.where(scores_rejection_sampling_std != 0)[0]

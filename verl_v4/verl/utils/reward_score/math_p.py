@@ -6,7 +6,7 @@ import os
 
 st = ipdb.set_trace
 
-def find_project_root(target_dir_name="PHO"):
+def find_project_root(target_dir_name="Sim2Reason"):
     path = os.path.abspath(__file__)
     while True:
         path = os.path.dirname(path)
@@ -14,10 +14,10 @@ def find_project_root(target_dir_name="PHO"):
             return path
         if path == "/" or path == "":
             raise FileNotFoundError(f"Could not find directory '{target_dir_name}' in path hierarchy.")
-pho_path = find_project_root("PHO")
-print(f"PHO path: {pho_path}")
+Sim2Reason_path = find_project_root("Sim2Reason")
+print(f"Sim2Reason path: {Sim2Reason_path}")
 
-sys.path.append(pho_path)
+sys.path.append(Sim2Reason_path)
 
 from llm.utils.math_utils import extract_answer
 import llm.utils.basic_utils as basic_utils

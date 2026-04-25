@@ -34,7 +34,10 @@ from recorder.contact_utils import (get_text, parse_custom_data,
                            process_coefficients_friction, process_coefficients_restitution, 
                            calculate_contact_force, apply_restitution_correction)
 
-fm.rebuild()
+try:
+    fm.rebuild()
+except AttributeError:
+    pass 
 font_path = "sim/tests/fonts/times.ttf"
 font_prop = fm.FontProperties(fname=font_path)
 fm.fontManager.addfont(font_path)

@@ -386,6 +386,7 @@ class Hemisphere(Body):
 
         # 2. Generate if not exist
         if not os.path.exists(stl_path):
+            os.makedirs(os.path.dirname(stl_path), exist_ok=True)
             hemisphere_obj = get_hemisphere(radius=self.radius, thickness=self.thickness)
             export(hemisphere_obj, stl_path)
 
@@ -441,6 +442,7 @@ class Bowl(Body):
 
         # 2. Generate check
         if not os.path.exists(stl_path):
+            os.makedirs(os.path.dirname(stl_path), exist_ok=True)
             bowl_obj = get_bowl(radius=self.radius, height=self.height, thickness=self.thickness)
             export(bowl_obj, stl_path)
 
@@ -498,6 +500,7 @@ class SphereWithHole(Body):
 
         # 2. Generate if not exist
         if not os.path.exists(stl_path):
+            os.makedirs(os.path.dirname(stl_path), exist_ok=True)
             hole_sphere_obj = get_sphere_with_hole(
                 radius=self.radius,
                 hole_radius=self.hole_radius,

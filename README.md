@@ -33,7 +33,7 @@ conda create -n pho_data python=3.11
 conda activate pho_data
 
 pip install bpy
-pip install mujoco ImageIO
+pip install mujoco==3.3.4 ImageIO
 pip install ipdb scipy tabulate pandas matplotlib
 pip install hydra-core omegaconf
 pip install tqdm wandb
@@ -50,12 +50,13 @@ conda activate pho_training
 
 pip install vllm==0.8.5.post1
 pip install https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.4.post1/flash_attn-2.7.4.post1+cu12torch2.6cxx11abiFALSE-cp312-cp312-linux_x86_64.whl
+cd verl_v4
+pip install -e .
+pip install hydra-core==1.4.0.dev1 omegaconf==2.4.0.dev3
 pip install math-verify==0.7.0 
 pip install latex2sympy2_extended==1.0.9
 pip install antlr4-python3-runtime==4.11.0
 pip install polars ipdb
-cd verl_v4
-pip install -e .
 pip install transformers==4.52.3
 pip install setuptools==69.5.1
 ```
@@ -116,8 +117,21 @@ python -m verl_v4.recipe.dapo.simple_eval \
    model=qwen2.5-3b-instruct data.val_batch_size=null actor_rollout_ref.rollout.val_kwargs.n=8 \
   max_response_length=30000 trainer.n_gpus_per_node=8 model_name=${MODEL_PATH} \
   actor_rollout_ref.rollout.gpu_memory_utilization=0.85 max_model_len=30000 \
-  data.val_files="[${PHO_DATA}/ipho/ipho_numeric_validation_no_instruct.parquet]"
+  data.val_files="[${PHO_DATA}/ipho/ipho_numeric_validation_no_instruct.parquet]" \
+  data.train_files="[${PHO_DATA}/${DATA_VERSION}/train_${DATA_VERSION}_rl.parquet]"
 ```
+
+> **Note for the 32B checkpoint:** The released 32B checkpoint was trained with an older instruction prompt. To evaluate it correctly on IPhO, add `use_legacy_prompt` to the `exps` list:
+> ```bash
+> python -m verl_v4.recipe.dapo.simple_eval \
+>   exps='[dapo_32b,log_all_reward,pass_at_n,simple_eval,use_legacy_prompt]' \
+>   model=qwen2.5-3b-instruct data.val_batch_size=null actor_rollout_ref.rollout.val_kwargs.n=8 \
+>   max_response_length=30000 trainer.n_gpus_per_node=8 model_name=${MODEL_PATH} \
+>   actor_rollout_ref.rollout.gpu_memory_utilization=0.85 max_model_len=30000 \
+>   data.val_files="[${PHO_DATA}/ipho/ipho_numeric_validation_no_instruct.parquet]" \
+>   data.train_files="[${PHO_DATA}/${DATA_VERSION}/train_${DATA_VERSION}_rl.parquet]"
+> ```
+> All other benchmarks (JEEBench, OlympiadBench, PHYSICS) are unaffected and use the same eval command regardless of checkpoint.
 
 To evaluate the model's performance on JEEBench, first download JEEBench by running `setup_jeebench.sh`, then run:
 ```bash

@@ -24,6 +24,8 @@ import ray
 from omegaconf import OmegaConf
 import wandb
 
+from importlib.metadata import version, PackageNotFoundError
+
 from verl.trainer.ppo.reward import load_reward_manager
 
 from .dapo_ray_trainer import RayDAPOTrainer

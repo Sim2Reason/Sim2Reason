@@ -18,7 +18,7 @@ class FallbackConfig:
     debug_print=False
     conservative_reward=False
 
-def find_project_root(target_dir_name="PHO"):
+def find_project_root(target_dir_name="Sim2Reason"):
     path = os.path.abspath(__file__)
     while True:
         path = os.path.dirname(path)
@@ -27,10 +27,10 @@ def find_project_root(target_dir_name="PHO"):
         if path == "/" or path == "":
             raise FileNotFoundError(f"Could not find directory '{target_dir_name}' in path hierarchy.")
         
-pho_path = find_project_root("PHO")
-print(f"PHO path: {pho_path}")
+Sim2Reason_path = find_project_root("Sim2Reason")
+print(f"Sim2Reason path: {Sim2Reason_path}")
 
-sys.path.append(pho_path)
+sys.path.append(Sim2Reason_path)
 
 from llm.utils import basic_utils
 st = ipdb.set_trace

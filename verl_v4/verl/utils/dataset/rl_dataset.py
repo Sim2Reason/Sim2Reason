@@ -451,7 +451,9 @@ To use the python interpreter tool, you need to write a python code snippet insi
                 if "numeric" not in row["data_source"].lower() and "reverse" not in row["data_source"].lower() and "symbol" not in row["data_source"].lower(): 
                     return {**row}
                 try:
-                    instruct = """\nSolve step by step by first defining variables for each body, then deriving the force body diagram equations for each body and then carefully deriving all constraint equations. Finally solve the system of equations and return final answer in \\boxed{}."""
+                    legacy_instruct = "Let's think step by step and output the final answer within \\boxed{}. The final answer should be expressed using the International System of Units (SI) unless stated otherwise."
+                    new_instruct = "\nSolve step by step by first defining variables for each body, then deriving the force body diagram equations for each body and then carefully deriving all constraint equations. Finally solve the system of equations and return final answer in \\boxed{}."
+                    instruct = legacy_instruct if self.config.get("use_legacy_prompt", False) else new_instruct
                     
                     # Modify prompt to mention scale
                     modified_prompt = row["prompt"].copy()
