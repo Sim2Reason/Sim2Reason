@@ -76,9 +76,9 @@ python -m sim.scene_generator scene_generation.num_scenes=1000 scene_generation=
 
 Generate QA pairs and filter shortcut questions by running the following command:
 ```bash
-python -m sim.qa_gen_rule data_version=$DATA_VERSION gpt_nlq.num_generations_per_problem=30 numerical=True symbolic=True reverse=False
+python -m sim.qa_gen_rule data_version=$DATA_VERSION question_generation.num_generations_per_problem=30 numerical=True symbolic=True reverse=False
 python -m sim.create_child_scenes data_version=$DATA_VERSION
-python -m sim.qa_gen_rule data_version=$DATA_VERSION numerical=True symbolic=True reverse=False gpt_nlq.build_child_scenes=True
+python -m sim.qa_gen_rule data_version=$DATA_VERSION numerical=True symbolic=True reverse=False question_generation.build_child_scenes=True
 ```
 
 Preprocess generated QA pairs into format suitable for verl by running the following command:
